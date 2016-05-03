@@ -68,21 +68,12 @@ router.put('/:id/:creature', (req, res) =>  {
   Tree.findById(req.params.id, (err, tree) => {
     if(err) return res.status(400).send(see);
 
-    // var newCreature = req.body.creature;
     var newCreature = req.params.creature;
-    // var newCreature = req.params.creature;
-    console.log('req.body.creature: ', newCreature);
     tree.creatures.push(newCreature);
 
     tree.save((err, savedTree) => {
       res.status(err ? 400: 200).send(err|| savedTree);
     });
-
-
-    // tree.save( function(err, savedTree) {
-    //   res.status(err ? 400: 200).send(err|| savedTree);
-    // });
-
   });
 });
 
@@ -101,14 +92,5 @@ router.delete('/:id/:creature', (req, res) => {
   });
 
 });
-
-
-// route.rotue('/nest/:id')
-//   .get((req, res) => {
-//     //
-//   })
-  // .put((req, res ))
-
-
 
 module.exports = router;
